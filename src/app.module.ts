@@ -18,7 +18,9 @@ import { SubscriptionService } from './subscription/subscription.service';
 import { LogModule } from './log/log.module';
 import { HistoryModule } from './history/history.module';
 import { DocxModule } from './docx/docx.module';
-
+import { UploadController } from './uploads/upload.controller';
+import { CloudinaryService } from './cloudinary/cloudinary.service';
+import { CloudinaryController } from './cloudinary/cloudinary.controller';
 
 @Module({
   imports: [
@@ -29,7 +31,7 @@ import { DocxModule } from './docx/docx.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver, 
       autoSchemaFile: true, 
-      playground:true
+      playground: true
     }),
     UserModule,
     AgentModule,
@@ -41,8 +43,18 @@ import { DocxModule } from './docx/docx.module';
     HistoryModule,
     DocxModule
   ],
-  controllers: [AppController, EventsController],
-  providers: [AppService, AppResolver, EventsGateway],
+  controllers: [
+    AppController, 
+    EventsController,
+    UploadController,
+    CloudinaryController,   // ✅ ADD YEH
+  ],
+  providers: [
+    AppService, 
+    AppResolver, 
+    EventsGateway,
+    CloudinaryService,      // ✅ ADD YEH
+  ],
 })
 
 export class AppModule implements OnModuleInit {

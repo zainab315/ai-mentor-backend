@@ -1,5 +1,5 @@
-echo "node_modules/
 .env
+.env.local
+.env.production
 dist/
-uploads/
-logs/" > .gitignore
+node_modules/
