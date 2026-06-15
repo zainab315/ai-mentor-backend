@@ -25,13 +25,17 @@ import { CloudinaryController } from './cloudinary/cloudinary.controller';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, 
+      isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.MONGODB_CONNECTION_URL),
+    // ✅ FIX: Use MONGODB_URI (environment variable name in Railway)
+    MongooseModule.forRoot(process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_URL),
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver, 
-      autoSchemaFile: true, 
-      playground: true
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+      playground: true,
+      introspection: true,  // ✅ Allows GraphQL introspection
+      csrfPrevention: false, // ✅ Prevents 400 errors
+      // ❌ REMOVED: cors property (not valid here)
     }),
     UserModule,
     AgentModule,
@@ -41,19 +45,19 @@ import { CloudinaryController } from './cloudinary/cloudinary.controller';
     SubscriptionModule,
     LogModule,
     HistoryModule,
-    DocxModule
+    DocxModule,
   ],
   controllers: [
-    AppController, 
+    AppController,
     EventsController,
     UploadController,
-    CloudinaryController,   // ✅ ADD YEH
+    CloudinaryController,
   ],
   providers: [
-    AppService, 
-    AppResolver, 
+    AppService,
+    AppResolver,
     EventsGateway,
-    CloudinaryService,      // ✅ ADD YEH
+    CloudinaryService,
   ],
 })
 
