@@ -242,7 +242,7 @@ export class OpenaiController {
         console.error('Stream error:', err);
         res.status(500).json({ error: 'File streaming error' });
       });
-    } catch (error) {
+    } catch (error: any) {
       throw new NotFoundException(error.message);
     }
   }

@@ -54,7 +54,7 @@ export class SubscriptionService {
           sig,
           process.env.STRIPE_WEBHOOK_SECRET,
         );
-    } catch (err) {
+    } catch (err: any) {
         console.log(`Stripe webhook signature verification failed: ${err.message}`)
         const session = event.data.object as Stripe.Checkout.Session;
         if(session){
@@ -86,7 +86,7 @@ export class SubscriptionService {
           
             
       }
-    }catch(err){
+    }catch(err: any){
         await this.log.createLog("none",`Delivery failed. Try catch line 106 of checkout session completed: ${err.message} tokens ${session.metadata.credit}`)
     }
 

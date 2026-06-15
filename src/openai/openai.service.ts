@@ -7,8 +7,9 @@ import { ASSISTANT } from './enum/Assistant.enum';
 import * as path from 'path';
 import { AgentService } from 'src/agent/agent.service';
 import { countTokens } from 'utils/methods';
-import { UserService } from '../user/user.service';
 import { mongoId } from 'utils/deScopeIdForrmater';
+import { UserService } from '../user/user.service';
+
 
 @Injectable()
 export class OpenaiService {
@@ -44,7 +45,7 @@ export class OpenaiService {
         data: assistant,
         msg: 'Assistant created',
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -68,7 +69,7 @@ export class OpenaiService {
         statusCode: HttpStatus.OK,
         msg: 'Assistant deleted',
       };
-    } catch (e) {
+    } catch (e : any) {
       return {
         success: false,
         msg: e?.error?.message,
@@ -83,7 +84,7 @@ export class OpenaiService {
         order: 'desc',
       });
       return { data: list.data, success: true, statusCode: HttpStatus.OK };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         data: [],
@@ -106,7 +107,7 @@ export class OpenaiService {
         statusCode: HttpStatus.CREATED,
         msg: 'Thread Created',
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         msg: e?.error?.message,
         success: false,
@@ -129,7 +130,7 @@ export class OpenaiService {
         statusCode: HttpStatus.OK,
         msg: 'Thread deleted',
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -168,7 +169,7 @@ export class OpenaiService {
         statusCode: HttpStatus.CREATED,
         data: threadMessage,
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -188,7 +189,7 @@ export class OpenaiService {
     try {
       const list = await this.openai.beta.threads.messages.list(threadId);
       return { success: true, statusCode: HttpStatus.OK, data: list };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -230,7 +231,7 @@ export class OpenaiService {
         data: run,
         msg: 'Run created',
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -260,7 +261,7 @@ export class OpenaiService {
         data: run,
         msg: 'Run cancelled',
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -285,7 +286,7 @@ export class OpenaiService {
     try {
       const run = await this.openai.beta.threads.runs.retrieve(threadId, runId);
       return { success: true, statusCode: HttpStatus.OK, data: run };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -315,7 +316,7 @@ export class OpenaiService {
         statusCode: HttpStatus.OK,
         data: transcription.text,
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: true,
         statusCode: HttpStatus.OK,
@@ -378,7 +379,7 @@ export class OpenaiService {
         statusCode: HttpStatus.OK,
         data: response.choices[0]?.message?.content || 'No response generated',
       };
-    } catch (e) {
+    } catch (e: any) {
       return {
         success: true,
         statusCode: HttpStatus.OK,
@@ -451,7 +452,7 @@ export class OpenaiService {
             totalUsedTokens,
           );
           observer.complete();
-        } catch (e) {
+        } catch (e: any) {
           console.error('ChatCompletion Streaming Error:', e);
           observer.error(e?.error?.message || 'An unexpected error occurred');
         }
@@ -505,7 +506,7 @@ export class OpenaiService {
         data:
           completion.choices[0]?.message?.content || 'No response generated',
       };
-    } catch (e) {
+    } catch (e: any) {
       console.error('ChatCompletion Error:', e);
 
       return {
@@ -586,7 +587,7 @@ export class OpenaiService {
             totalUsedTokens,
           );
           observer.complete();
-        } catch (e) {
+        } catch (e: any) {
           console.error('ChatCompletion Streaming Error:', e);
           observer.error(e?.error?.message || 'An unexpected error occurred');
         }
@@ -632,7 +633,7 @@ export class OpenaiService {
         statusCode: HttpStatus.BAD_REQUEST,
         data: { stream, size: stat.size, filPath },
       };
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
         msg: 'Error generating speech:',
@@ -737,7 +738,7 @@ export class OpenaiService {
         statusCode: HttpStatus.OK,
         data: JSON.parse(response.choices[0].message.content),
       };
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -866,7 +867,7 @@ export class OpenaiService {
         success: true,
         data: response.choices[0].message.content,
       };
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
         msg: error.message,
@@ -910,7 +911,7 @@ export class OpenaiService {
         gptResponse: JSON.parse(response.choices[0].message.content),
         totalTokensUsed: tokenUsage,
       };
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
         msg: error.message,
@@ -943,7 +944,7 @@ export class OpenaiService {
         success: true,
         answer,
       };
-    } catch (error) {
+    } catch (error: any) {
       console.error('OpenAI Error:', error);
       return {
         success: false,
