@@ -1,5 +1,5 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { ResponseDto } from 'src/dto/response.dto';
+import { ResponseDto } from './dto/response.dto';
 import { S3Client,DeleteObjectCommand,PutObjectCommand  } from '@aws-sdk/client-s3';
 import { ConfigService } from '@nestjs/config';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';

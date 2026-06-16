@@ -2,8 +2,8 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Quiz } from './schema/quiz.schema';
 import { Model, Types } from 'mongoose';
-import { ResponseDto } from 'src/dto/response.dto';
-import { generateMongoIdFormat, mongoId } from 'utils/deScopeIdForrmater';
+import { ResponseDto } from './dto/response.dto';
+import { generateMongoIdFormat, mongoId } from '../utils/deScopeIdForrmater';
 
 @Injectable()
 export class QuizService {

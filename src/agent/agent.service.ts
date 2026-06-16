@@ -3,12 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Agent } from './schema/agent.schema';
 import { Model, Types } from 'mongoose';
 import Stripe from 'stripe';
-import { generateMongoIdFormat, mongoId } from 'utils/deScopeIdForrmater';
-import { ResponseDto } from 'src/dto/response.dto';
+import { generateMongoIdFormat, mongoId } from '../utils/deScopeIdForrmater';
+import { ResponseDto } from './dto/response.dto';
 import { HttpStatusCode } from 'axios';
-import { OpenaiService } from 'src/openai/openai.service';
-import { UserService } from 'src/user/user.service';
-import { HistoryService } from 'src/history/history.service';
+import { OpenaiService } from './openai/openai.service';
+import { UserService } from './user/user.service';
+import { HistoryService } from './history/history.service';
 
 @Injectable()
 export class AgentService {

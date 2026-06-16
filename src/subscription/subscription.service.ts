@@ -1,10 +1,10 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { Model, Types } from 'mongoose';
 import * as cron from 'node-cron';
-import { LogService } from 'src/log/log.service';
-import { UserService } from 'src/user/user.service';
+import { LogService } from './log/log.service';
+import { UserService } from './user/user.service';
 import Stripe from 'stripe';
-import { generateMongoIdFormat, mongoId } from 'utils/deScopeIdForrmater';
+import { generateMongoIdFormat, mongoId } from '../utils/deScopeIdForrmater';
 import { planStatus, planType, Subscription } from './schema/subscription.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { SubscriptionResponse } from './subscription.resolver';

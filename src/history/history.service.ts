@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { mongoId } from 'utils/deScopeIdForrmater';
+import { mongoId } from '../utils/deScopeIdForrmater';
 
 @Injectable()
 export class HistoryService {

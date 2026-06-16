@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Param, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AwsService } from './aws.service';
-import { multerOptions, UploadedFileType } from 'utils/multer.config';
+import { multerOptions, UploadedFileType } from '../utils/multer.config';
 
 @Controller('aws')
 export class AwsController {

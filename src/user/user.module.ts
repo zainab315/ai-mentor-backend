@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schema/user.schema';
 import { UserController } from './user.controller';
-import { SubscriptionModule } from 'src/subscription/subscription.module'; // Import Module, not Service
+import { SubscriptionModule } from './subscription/subscription.module'; // Import Module, not Service
 
 @Module({
   imports: [

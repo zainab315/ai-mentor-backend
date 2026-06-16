@@ -1,11 +1,11 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { SubscriptionService } from './subscription.service';
 import { SubscriptionController } from './subscription.controller';
-import { LogModule } from 'src/log/log.module';
+import { LogModule } from './log/log.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Subscription, SubscriptionSchema } from './schema/subscription.schema';
 import { SubscriptionResolver } from './subscription.resolver';
-import { UserModule } from 'src/user/user.module'; // Import Module, not Service
+import { UserModule } from './user/user.module'; // Import Module, not Service
 
 @Module({
   imports: [

@@ -3,10 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
 import mongoose, { Model, Types } from 'mongoose';
 import { addUserInput } from './inputDto/userInput'
-import { generateMongoIdFormat, mongoId } from 'utils/deScopeIdForrmater';
+import { generateMongoIdFormat, mongoId } from '../utils/deScopeIdForrmater';
 import axios from 'axios';
-import { SubscriptionService } from 'src/subscription/subscription.service';
-import { planType } from 'src/subscription/schema/subscription.schema';
+import { SubscriptionService } from './subscription/subscription.service';
+import { planType } from './subscription/schema/subscription.schema';
 
 
 @Injectable()

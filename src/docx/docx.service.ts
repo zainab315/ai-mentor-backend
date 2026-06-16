@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { AgentService } from 'src/agent/agent.service';
+import { AgentService } from './agent/agent.service';
 import * as fs from 'fs';
 import * as path from 'path';
 import PizZip from 'pizzip';

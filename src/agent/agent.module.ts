@@ -5,8 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Agent, AgentSchema } from './schema/agent.schema';
 import { UserModule } from '../user/user.module';
 import { AgentController } from './agent.controller';
-import { OpenaiModule } from 'src/openai/openai.module';
-import { HistoryModule } from 'src/history/history.module';
+import { OpenaiModule } from './openai/openai.module';
+import { HistoryModule } from './history/history.module';
 
 @Module({
   imports: [

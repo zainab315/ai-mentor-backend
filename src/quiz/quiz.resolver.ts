@@ -1,6 +1,6 @@
 import { Args, Field, Mutation, ObjectType, Query, Resolver } from '@nestjs/graphql';
 import { QuizService } from './quiz.service';
-import { ResponseDto } from 'src/dto/response.dto';
+import { ResponseDto } from './dto/response.dto';
 import { Quiz } from './schema/quiz.schema';
 
 @Resolver()

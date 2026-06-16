@@ -15,7 +15,7 @@ import {
 import { OpenaiService } from './openai.service';
 import { ResponseDto } from '../dto/response.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerOptions, UploadedFileType } from 'utils/multer.config';
+import { multerOptions, UploadedFileType } from '../utils/multer.config';
 import { ASSISTANT } from './enum/Assistant.enum';
 import { map, Observable } from 'rxjs';
 import { Response } from 'express';

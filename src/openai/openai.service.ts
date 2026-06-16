@@ -5,9 +5,9 @@ import { ResponseDto } from '../dto/response.dto';
 import { Observable } from 'rxjs';
 import { ASSISTANT } from './enum/Assistant.enum';
 import * as path from 'path';
-import { AgentService } from 'src/agent/agent.service';
-import { countTokens } from 'utils/methods';
-import { mongoId } from 'utils/deScopeIdForrmater';
+import { AgentService } from './agent/agent.service';
+import { countTokens } from '../utils/methods';
+import { mongoId } from '../utils/deScopeIdForrmater';
 import { UserService } from '../user/user.service';
 
 

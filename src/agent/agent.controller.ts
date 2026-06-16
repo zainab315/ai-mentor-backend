@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { AgentService } from './agent.service';
 import { Agent } from './schema/agent.schema';
-import { ResponseDto } from 'src/dto/response.dto';
+import { ResponseDto } from './dto/response.dto';
 
 @Controller('agent')
 export class AgentController {
