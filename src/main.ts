@@ -8,12 +8,27 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-  // ✅ ULTIMATE CORS FIX - Allow all origins for Vercel frontend
+  // ✅ ULTIMATE CORS FIX - Allow all origins and methods
   app.enableCors({
-    origin: true,  // Dynamically allow all origins
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      
+      // Allow all origins in production - FYP ke liye ye safe hai
+      callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With', 'Apollo-Require-Preflight'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'Accept',
+      'Origin',
+      'X-Requested-With',
+      'Apollo-Require-Preflight',
+      'Clerk-User-Id',      // Clerk authentication headers
+      'Clerk-Session-Id',   // Clerk session headers
+    ],
   });
   
   app.use('/subscription/webhook', raw({ type: 'application/json' }));
@@ -25,7 +40,6 @@ async function bootstrap() {
   
   console.log(`🚀 Server running on port ${port}`);
   console.log(`✅ CORS enabled for all origins`);
-  console.log(`📡 GraphQL endpoint available at /graphql`);
 }
 
 bootstrap();
