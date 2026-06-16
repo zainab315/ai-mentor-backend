@@ -8,18 +8,18 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-  // ✅ SIMPLE CORS FIX - Allow all origins (Fix for Vercel frontend)
+  // ✅ SIMPLE CORS FIX - Allow all origins
   app.enableCors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With', 'Apollo-Require-Preflight'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With'],
   });
   
   app.use('/subscription/webhook', raw({ type: 'application/json' }));
   app.use(json());
   app.use(urlencoded({ extended: true }));
 
-  const port = process.env.PORT || 3012;
+  const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
   
   console.log(`🚀 Server running on port ${port}`);
