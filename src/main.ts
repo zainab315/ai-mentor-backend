@@ -8,11 +8,12 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-  // ✅ SIMPLE CORS FIX - Allow all origins
+  // ✅ SOLID CORS FIX - Allow all origins
   app.enableCors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With', 'Apollo-Require-Preflight'],
+    credentials: false, // Set to false when origin is '*'
   });
   
   app.use('/subscription/webhook', raw({ type: 'application/json' }));
